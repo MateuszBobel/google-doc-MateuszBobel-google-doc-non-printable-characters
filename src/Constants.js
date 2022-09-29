@@ -13,3 +13,5 @@ const nonPrintableCharacters = [
   simplySpaceCharacter,
   tabulationCharacter,
 ];
+
+const newLineEscapeCharacterRegex = /\r|\n/;

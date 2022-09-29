@@ -67,3 +67,32 @@ const getParagraphs = () => {
   const paragraphs = DocumentApp.getActiveDocument().getBody().getParagraphs();
   return paragraphs;
 };
+
+const insertCharacterAtIndex = (paragraph, index, character) => {
+  paragraph.getChild(0).asText().insertText(index, character);
+};
+
+const getNonPrintableCharactesIndexes = (string, regex) => {
+  const indexes = [];
+  for (let index = 0; index < string.length; index++) {
+    if (regex.exec(string[index])) {
+      indexes.push(index);
+    }
+  }
+  return indexes;
+};
+
+const insertNewLineCharacters = () => {
+  const paragraphs = getParagraphs();
+  paragraphs.forEach((paragraph) => {
+    const text = paragraph.getText();
+    const nonPrintableCharactersIndexes = getNonPrintableCharactesIndexes(
+      text,
+      newLineEscapeCharacterRegex
+    );
+    nonPrintableCharactersIndexes.forEach((characterIndex, index) => {
+      const nextCharacterIndex = characterIndex + index;
+      insertCharacterAtIndex(paragraph, nextCharacterIndex, newLineCharacter);
+    });
+  });
+};
