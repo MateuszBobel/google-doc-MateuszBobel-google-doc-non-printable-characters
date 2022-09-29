@@ -152,3 +152,16 @@ const addSimplySpaceCharacter = () => {
     paragraph.replaceText(simplySpaceCharacterRE2Regex, simplySpaceCharacter);
   });
 };
+
+const insertTabulationCharacter = () => {
+  const paragraphs = getParagraphs();
+  paragraphs.forEach((paragraph) => {
+    const indentFirstLine = paragraph.getIndentFirstLine();
+    if (!indentFirstLine) return;
+    const defaultIndentOffset = 36;
+    const tabulationCount = indentFirstLine / defaultIndentOffset;
+    for (let index = 0; index < tabulationCount; index++) {
+      insertCharacterAtIndex(paragraph, index, tabulationCharacter);
+    }
+  });
+};
