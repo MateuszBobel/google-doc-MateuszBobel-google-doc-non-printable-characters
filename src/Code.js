@@ -96,3 +96,13 @@ const insertNewLineCharacters = () => {
     });
   });
 };
+
+const insertEmptyParagraphCharacters = () => {
+  const paragraphs = getParagraphs();
+  paragraphs.forEach((paragraph) => {
+    const text = paragraph.getText();
+    const isEmpty = text.replace(pageBreakCharacter, "").length === 0;
+    if (!isEmpty) return;
+    paragraph.insertText(0, emptyParagraphCharacter);
+  });
+};
