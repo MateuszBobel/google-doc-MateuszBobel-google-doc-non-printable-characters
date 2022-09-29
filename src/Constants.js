@@ -15,3 +15,4 @@ const nonPrintableCharacters = [
 ];
 
 const newLineEscapeCharacterRegex = /\r|\n/;
+const simplySpaceCharacterRE2Regex = "\\s";

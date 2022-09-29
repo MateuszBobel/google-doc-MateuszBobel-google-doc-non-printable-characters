@@ -142,3 +142,13 @@ const insertPageBreakCharacters = () => {
     paragraph.insertText(0, pageBreakCharacter);
   });
 };
+
+const addSimplySpaceCharacter = () => {
+  const paragraphs = getParagraphs();
+  paragraphs.forEach((paragraph) => {
+    const text = paragraph.getText();
+    const isEmpty = text.length === 0;
+    if (isEmpty) return;
+    paragraph.replaceText(simplySpaceCharacterRE2Regex, simplySpaceCharacter);
+  });
+};
