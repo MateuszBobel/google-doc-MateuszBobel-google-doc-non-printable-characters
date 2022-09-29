@@ -106,3 +106,19 @@ const insertEmptyParagraphCharacters = () => {
     paragraph.insertText(0, emptyParagraphCharacter);
   });
 };
+
+const insertEndParagraphCharacters = () => {
+  const paragraphs = getParagraphs();
+  paragraphs.forEach((paragraph) => {
+    const text = paragraph.getText();
+    const isEmpty = text.replace(pageBreakCharacter, "").length === 0;
+    const hasEmptyParagraphCharacter = text.includes(emptyParagraphCharacter);
+    if (isEmpty || hasEmptyParagraphCharacter) return;
+    const lastCharacterIndex = text.length;
+    insertCharacterAtIndex(
+      paragraph,
+      lastCharacterIndex,
+      endParagraphCharacter
+    );
+  });
+};
