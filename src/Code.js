@@ -62,3 +62,8 @@ const onOpen = () => {
     )
     .addToUi();
 };
+
+const getParagraphs = () => {
+  const paragraphs = DocumentApp.getActiveDocument().getBody().getParagraphs();
+  return paragraphs;
+};
