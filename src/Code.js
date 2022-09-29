@@ -72,6 +72,10 @@ const insertCharacterAtIndex = (paragraph, index, character) => {
   paragraph.getChild(0).asText().insertText(index, character);
 };
 
+const isPageBrakInParagraph = (paragraph) => {
+  return paragraph.findElement(DocumentApp.ElementType.PAGE_BREAK) !== null;
+};
+
 const getNonPrintableCharactesIndexes = (string, regex) => {
   const indexes = [];
   for (let index = 0; index < string.length; index++) {
@@ -120,5 +124,21 @@ const insertEndParagraphCharacters = () => {
       lastCharacterIndex,
       endParagraphCharacter
     );
+  });
+};
+
+const insertPageBreakCharacters = () => {
+  const paragraphs = getParagraphs();
+  paragraphs.forEach((paragraph) => {
+    const text = paragraph.getText();
+    const hasPageBreak = isPageBrakInParagraph(paragraph);
+    if (!hasPageBreak) return;
+    const isEmpty = text.length === 0;
+    if (!isEmpty) {
+      const lastCharacterIndex = text.length;
+      insertCharacterAtIndex(paragraph, lastCharacterIndex, pageBreakCharacter);
+      return;
+    }
+    paragraph.insertText(0, pageBreakCharacter);
   });
 };
