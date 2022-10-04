@@ -207,3 +207,13 @@ const removeAllNonPrintableCharacters = () => {
     replaceTextInParagraphs(character);
   });
 };
+
+const insertAllNonPrintableCharacters = () => {
+  removeAllNonPrintableCharacters();
+  addSimplySpaceCharacter();
+  insertNewLineCharacters();
+  insertEndParagraphCharacters();
+  insertPageBreakCharacters();
+  insertEmptyParagraphCharacters();
+  insertTabulationCharacter();
+};
