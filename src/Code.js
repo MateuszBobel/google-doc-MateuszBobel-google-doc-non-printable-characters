@@ -29,7 +29,7 @@ const onOpen = () => {
         )
         .addItem(
           `❌ ${tabulationCharacter} tabulation characters`,
-          "removeAllNonPrintableCharactersFromDoc"
+          "removeTabulationCharacters"
         )
     )
     .addSubMenu(
@@ -87,6 +87,7 @@ const getNonPrintableCharactesIndexes = (string, regex) => {
 };
 
 const insertNewLineCharacters = () => {
+  removeNewLineCharacters();
   const paragraphs = getParagraphs();
   paragraphs.forEach((paragraph) => {
     const text = paragraph.getText();
@@ -102,6 +103,7 @@ const insertNewLineCharacters = () => {
 };
 
 const insertEmptyParagraphCharacters = () => {
+  removeEmptyParagraphCharacters();
   const paragraphs = getParagraphs();
   paragraphs.forEach((paragraph) => {
     const text = paragraph.getText();
@@ -112,6 +114,7 @@ const insertEmptyParagraphCharacters = () => {
 };
 
 const insertEndParagraphCharacters = () => {
+  removeEndParagraphCharacters();
   const paragraphs = getParagraphs();
   paragraphs.forEach((paragraph) => {
     const text = paragraph.getText();
@@ -128,6 +131,7 @@ const insertEndParagraphCharacters = () => {
 };
 
 const insertPageBreakCharacters = () => {
+  removePageBreakCharacters();
   const paragraphs = getParagraphs();
   paragraphs.forEach((paragraph) => {
     const text = paragraph.getText();
@@ -144,6 +148,7 @@ const insertPageBreakCharacters = () => {
 };
 
 const addSimplySpaceCharacter = () => {
+  removeSimplySpaceCharacters();
   const paragraphs = getParagraphs();
   paragraphs.forEach((paragraph) => {
     const text = paragraph.getText();
@@ -154,6 +159,7 @@ const addSimplySpaceCharacter = () => {
 };
 
 const insertTabulationCharacter = () => {
+  removeTabulationCharacters();
   const paragraphs = getParagraphs();
   paragraphs.forEach((paragraph) => {
     const indentFirstLine = paragraph.getIndentFirstLine();
@@ -163,5 +169,41 @@ const insertTabulationCharacter = () => {
     for (let index = 0; index < tabulationCount; index++) {
       insertCharacterAtIndex(paragraph, index, tabulationCharacter);
     }
+  });
+};
+
+const replaceTextInParagraphs = (text, replacment = "") => {
+  const paragraphs = getParagraphs();
+  paragraphs.forEach((paragraph) => paragraph.replaceText(text, replacment));
+};
+
+const removeNewLineCharacters = () => {
+  replaceTextInParagraphs(newLineCharacter);
+};
+
+const removeEmptyParagraphCharacters = () => {
+  replaceTextInParagraphs(emptyParagraphCharacter);
+};
+
+const removeEndParagraphCharacters = () => {
+  replaceTextInParagraphs(endParagraphCharacter);
+};
+
+const removePageBreakCharacters = () => {
+  replaceTextInParagraphs(pageBreakCharacter);
+};
+
+const removeSimplySpaceCharacters = () => {
+  replaceTextInParagraphs(simplySpaceCharacter, " ");
+};
+
+const removeTabulationCharacters = () => {
+  replaceTextInParagraphs(tabulationCharacter);
+};
+
+const removeAllNonPrintableCharacters = () => {
+  removeSimplySpaceCharacters();
+  nonPrintableCharacters.forEach((character) => {
+    replaceTextInParagraphs(character);
   });
 };
