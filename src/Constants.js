@@ -3,7 +3,7 @@ const endParagraphCharacter = "¶";
 const newLineCharacter = "⏎";
 const pageBreakCharacter = "↡";
 const simplySpaceCharacter = "▪";
-const tabulationCharacter = "￫";
+const tabulationCharacter = "→";
 
 const nonPrintableCharacters = [
   emptyParagraphCharacter,

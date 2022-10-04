@@ -167,7 +167,7 @@ const insertTabulationCharacter = () => {
     const defaultIndentOffset = 36;
     const tabulationCount = indentFirstLine / defaultIndentOffset;
     for (let index = 0; index < tabulationCount; index++) {
-      insertCharacterAtIndex(paragraph, index, tabulationCharacter);
+      insertCharacterAtIndex(paragraph, 0, tabulationCharacter);
     }
   });
 };
